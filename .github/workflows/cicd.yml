@@ -23,3 +23,8 @@ jobs:
         run: |
           ls 
           echo "Files listed"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          echo "Dependencies installed"
