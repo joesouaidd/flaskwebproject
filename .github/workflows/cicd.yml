@@ -45,6 +45,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - name: Checkout out branch
@@ -55,3 +56,9 @@ jobs:
         with:
           username: joesouaidd
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build . -t joesouaidd/devops-app:latest
+          docker push joesouaidd/devops-app:latest
+          echo "Docker image built and pushed"
