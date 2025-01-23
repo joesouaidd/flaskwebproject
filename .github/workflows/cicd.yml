@@ -42,3 +42,16 @@ jobs:
         run: |
           pytest
           echo "Tests passed"
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout out branch
+        uses: actions/checkout@v4
+
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: joesouaidd
+          password: ${{ secrets.DOCKER_PASSWORD }}
