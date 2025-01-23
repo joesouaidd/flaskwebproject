@@ -62,3 +62,12 @@ jobs:
           docker build . -t joesouaidd/devops-app:${{ github.sha }}
           docker push joesouaidd/devops-app:${{ github.sha }}
           echo "Docker image built and pushed"
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: "devopsjoe-app"
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: 'joesouaidd/devops-app:${{ github.sha }}'
+          
+          # to deploy the app to azure web app
